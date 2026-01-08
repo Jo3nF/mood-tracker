@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -15,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="app">
         <!-- Header -->
@@ -76,9 +78,30 @@
                 <div class="legend-item"><span class="legend-dot grade-0"></span>A+ Positive core memory</div>
                 <div class="legend-item"><span class="legend-dot grade-1"></span>A Very positive</div>
                 <div class="legend-item"><span class="legend-dot grade-2"></span>B Positive</div>
-                <div class="legend-item"><span class="legend-dot grade-3"></span>C Neutral (or the positive offset the negative)</div>
+                <div class="legend-item"><span class="legend-dot grade-3"></span>C Neutral (or the positive offset the
+                    negative)</div>
                 <div class="legend-item"><span class="legend-dot grade-4"></span>D Negative</div>
                 <div class="legend-item"><span class="legend-dot grade-5"></span>F Very negative</div>
+            </div>
+        </section>
+
+        <!-- Daily Reminder -->
+        <section class="card reminder-card">
+            <div class="reminder-row">
+                <div class="reminder-info">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
+                    </svg>
+                    <span>Daily Reminder</span>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="reminderToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="reminder-time-row" id="reminderTimeRow">
+                <label for="reminderTime">Remind me at:</label>
+                <input type="time" id="reminderTime" value="20:00">
             </div>
         </section>
 
@@ -86,20 +109,20 @@
         <section class="actions">
             <button class="action-btn share-btn" id="shareBtn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/>
+                    <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13" />
                 </svg>
                 Share Your Year
             </button>
             <div class="action-row">
                 <button class="action-btn secondary" id="exportBtn">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
                     </svg>
                     Export
                 </button>
                 <button class="action-btn secondary" id="importBtn">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
                     </svg>
                     Import
                 </button>
@@ -112,4 +135,5 @@
 
     <script src="app.js"></script>
 </body>
+
 </html>

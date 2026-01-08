@@ -531,6 +531,102 @@ body {
     background: var(--grade-5);
 }
 
+/* ===== Reminder Card ===== */
+.reminder-card {
+    padding: 12px 16px;
+}
+
+.reminder-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reminder-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.reminder-info svg {
+    color: var(--text-secondary);
+}
+
+.reminder-time-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+.reminder-time-row label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.reminder-time-row input[type="time"] {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.reminder-time-row.hidden {
+    display: none;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 28px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+    transition: 0.3s;
+    border: 1px solid var(--border-color);
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.toggle-switch input:checked+.toggle-slider {
+    background: var(--gradient-share);
+    border-color: transparent;
+}
+
+.toggle-switch input:checked+.toggle-slider::before {
+    transform: translateX(22px);
+    background: white;
+}
+
 /* ===== Action Buttons ===== */
 .actions {
     display: flex;
