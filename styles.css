@@ -1,0 +1,691 @@
+/* ===== CSS Variables & Reset ===== */
+:root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #141414;
+    --bg-card: #1a1a1a;
+    --bg-card-hover: #222222;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --text-muted: rgba(255, 255, 255, 0.4);
+
+    /* Mood colors */
+    --grade-0: #16a34a;
+    /* A+ - Dark green */
+    --grade-1: #22c55e;
+    /* A - Green */
+    --grade-2: #84cc16;
+    /* B - Lime */
+    --grade-3: #facc15;
+    /* C - Yellow */
+    --grade-4: #f97316;
+    /* D - Orange */
+    --grade-5: #ef4444;
+    /* F - Red */
+
+    /* Gradients */
+    --gradient-share: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    --gradient-support: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== App Container ===== */
+.app {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 16px;
+    padding-top: calc(16px + var(--safe-area-top));
+    padding-bottom: calc(24px + var(--safe-area-bottom));
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* ===== Header ===== */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.year-display {
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===== Cards ===== */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+/* ===== Today Card ===== */
+.today-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.today-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.today-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.mood-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mood-btn {
+    flex: 1;
+    aspect-ratio: 1;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    color: #000;
+}
+
+.mood-btn[data-grade="0"] {
+    background: var(--grade-0);
+}
+
+.mood-btn[data-grade="1"] {
+    background: var(--grade-1);
+}
+
+.mood-btn[data-grade="2"] {
+    background: var(--grade-2);
+}
+
+.mood-btn[data-grade="3"] {
+    background: var(--grade-3);
+}
+
+.mood-btn[data-grade="4"] {
+    background: var(--grade-4);
+}
+
+.mood-btn[data-grade="5"] {
+    background: var(--grade-5);
+}
+
+.mood-btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.mood-btn:active {
+    transform: scale(0.95);
+}
+
+.mood-btn.selected {
+    box-shadow: 0 0 0 3px var(--bg-primary), 0 0 0 5px currentColor;
+}
+
+.mood-btn.selected::after {
+    content: '✓';
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    font-size: 0.7rem;
+}
+
+.note-input {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.note-input::placeholder {
+    color: var(--text-muted);
+}
+
+.note-input:focus {
+    border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* ===== View Toggle ===== */
+.view-toggle {
+    display: flex;
+    background: var(--bg-card);
+    border-radius: var(--radius-full);
+    padding: 4px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggle-btn.active {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* ===== Calendar Card ===== */
+.month-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.nav-btn {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: var(--bg-card-hover);
+}
+
+.month-label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Calendar Grid */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar-header {
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 8px 0;
+    text-transform: uppercase;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.calendar-day:hover:not(.empty) {
+    background: var(--bg-card-hover);
+}
+
+.calendar-day.empty {
+    cursor: default;
+}
+
+.calendar-day.today {
+    border: 2px solid var(--text-secondary);
+}
+
+.calendar-day.has-mood {
+    color: #000;
+    font-weight: 600;
+}
+
+.calendar-day.grade-0 {
+    background: var(--grade-0);
+}
+
+.calendar-day.grade-1 {
+    background: var(--grade-1);
+}
+
+.calendar-day.grade-2 {
+    background: var(--grade-2);
+}
+
+.calendar-day.grade-3 {
+    background: var(--grade-3);
+}
+
+.calendar-day.grade-4 {
+    background: var(--grade-4);
+}
+
+.calendar-day.grade-5 {
+    background: var(--grade-5);
+}
+
+/* Year Grid */
+.year-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.year-grid.hidden {
+    display: none;
+}
+
+.mini-month {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mini-month:hover {
+    background: var(--bg-card-hover);
+}
+
+.mini-month-header {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mini-month-avg {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+}
+
+.mini-month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.mini-day {
+    aspect-ratio: 1;
+    border-radius: 2px;
+    background: var(--bg-card);
+}
+
+.mini-day.grade-0 {
+    background: var(--grade-0);
+}
+
+.mini-day.grade-1 {
+    background: var(--grade-1);
+}
+
+.mini-day.grade-2 {
+    background: var(--grade-2);
+}
+
+.mini-day.grade-3 {
+    background: var(--grade-3);
+}
+
+.mini-day.grade-4 {
+    background: var(--grade-4);
+}
+
+.mini-day.grade-5 {
+    background: var(--grade-5);
+}
+
+/* ===== Statistics ===== */
+.section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.stat-item {
+    flex: 1;
+    text-align: center;
+}
+
+.stat-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.stat-dot.grade-0 {
+    background: var(--grade-0);
+}
+
+.stat-dot.grade-1 {
+    background: var(--grade-1);
+}
+
+.stat-dot.grade-2 {
+    background: var(--grade-2);
+}
+
+.stat-dot.grade-3 {
+    background: var(--grade-3);
+}
+
+.stat-dot.grade-4 {
+    background: var(--grade-4);
+}
+
+.stat-dot.grade-5 {
+    background: var(--grade-5);
+}
+
+.stat-count {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.stat-percent {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.average-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+}
+
+.average-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.average-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+}
+
+/* ===== Legend ===== */
+.legend-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.legend-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #000;
+}
+
+.legend-dot.grade-0 {
+    background: var(--grade-0);
+}
+
+.legend-dot.grade-1 {
+    background: var(--grade-1);
+}
+
+.legend-dot.grade-2 {
+    background: var(--grade-2);
+}
+
+.legend-dot.grade-3 {
+    background: var(--grade-3);
+}
+
+.legend-dot.grade-4 {
+    background: var(--grade-4);
+}
+
+.legend-dot.grade-5 {
+    background: var(--grade-5);
+}
+
+/* ===== Action Buttons ===== */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.share-btn {
+    background: var(--gradient-share);
+    color: white;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.action-row {
+    display: flex;
+    gap: 12px;
+}
+
+.action-btn.secondary {
+    flex: 1;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.action-btn.secondary:hover {
+    background: var(--bg-card-hover);
+}
+
+/* ===== Utilities ===== */
+.hidden {
+    display: none !important;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.3s ease;
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    max-width: 90%;
+    width: 360px;
+    transform: scale(0.9);
+    transition: transform 0.3s;
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1);
+}
+
+.modal-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.modal-content {
+    margin-bottom: 20px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-btn.primary {
+    background: var(--gradient-share);
+    color: white;
+}
+
+.modal-btn.secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 380px) {
+    .app {
+        padding: 12px;
+    }
+
+    .mood-btn {
+        font-size: 0.75rem;
+    }
+
+    .stats-row {
+        flex-wrap: wrap;
+    }
+
+    .stat-item {
+        flex: 0 0 calc(33.33% - 6px);
+    }
+}

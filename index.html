@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mood">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Mood Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="year-display" id="yearDisplay">2026</h1>
+        </header>
+
+        <!-- Today Card -->
+        <section class="card today-card">
+            <div class="today-header">
+                <span class="today-label">Today</span>
+                <span class="today-date" id="todayDate">Thursday, Jan 8</span>
+            </div>
+            <div class="mood-buttons" id="moodButtons">
+                <button class="mood-btn" data-grade="0" title="A+ - Positive core memory">A+</button>
+                <button class="mood-btn" data-grade="1" title="A - Very positive">A</button>
+                <button class="mood-btn" data-grade="2" title="B - Positive">B</button>
+                <button class="mood-btn" data-grade="3" title="C - Neutral">C</button>
+                <button class="mood-btn" data-grade="4" title="D - Negative">D</button>
+                <button class="mood-btn" data-grade="5" title="F - Very negative">F</button>
+            </div>
+            <input type="text" class="note-input" id="noteInput" placeholder="Add a note about your day...">
+        </section>
+
+        <!-- View Toggle -->
+        <div class="view-toggle">
+            <button class="toggle-btn active" data-view="month">Month</button>
+            <button class="toggle-btn" data-view="year">Year</button>
+        </div>
+
+        <!-- Calendar Container -->
+        <section class="card calendar-card">
+            <!-- Month Navigation -->
+            <div class="month-nav" id="monthNav">
+                <button class="nav-btn" id="prevMonth">‹</button>
+                <span class="month-label" id="monthLabel">January 2026</span>
+                <button class="nav-btn" id="nextMonth">›</button>
+            </div>
+            <!-- Calendar Grid -->
+            <div class="calendar" id="calendar"></div>
+            <!-- Year Grid (hidden by default) -->
+            <div class="year-grid hidden" id="yearGrid"></div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="card stats-card">
+            <h2 class="section-title">STATISTICS</h2>
+            <div class="stats-row" id="statsRow"></div>
+            <div class="average-display" id="averageDisplay">
+                <span class="average-label">Average:</span>
+                <span class="average-value" id="averageValue">—</span>
+            </div>
+        </section>
+
+        <!-- Legend -->
+        <section class="card legend-card">
+            <h2 class="section-title">LEGEND</h2>
+            <div class="legend-list">
+                <div class="legend-item"><span class="legend-dot grade-0"></span>A+ Positive core memory</div>
+                <div class="legend-item"><span class="legend-dot grade-1"></span>A Very positive</div>
+                <div class="legend-item"><span class="legend-dot grade-2"></span>B Positive</div>
+                <div class="legend-item"><span class="legend-dot grade-3"></span>C Neutral (or the positive offset the negative)</div>
+                <div class="legend-item"><span class="legend-dot grade-4"></span>D Negative</div>
+                <div class="legend-item"><span class="legend-dot grade-5"></span>F Very negative</div>
+            </div>
+        </section>
+
+        <!-- Actions -->
+        <section class="actions">
+            <button class="action-btn share-btn" id="shareBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/>
+                </svg>
+                Share Your Year
+            </button>
+            <div class="action-row">
+                <button class="action-btn secondary" id="exportBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Export
+                </button>
+                <button class="action-btn secondary" id="importBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                    </svg>
+                    Import
+                </button>
+            </div>
+        </section>
+
+        <!-- Hidden file input for import -->
+        <input type="file" id="fileInput" accept=".json" style="display: none;">
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
